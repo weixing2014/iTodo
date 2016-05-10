@@ -1,6 +1,6 @@
 import { List, Map } from 'immutable'
 
-export function todoList(state=List(), action) {
+export default function todoList(state=List(), action) {
   switch(action.type) {
     case 'ADD_TODO':
       const { id, text, isCompleted } = action
