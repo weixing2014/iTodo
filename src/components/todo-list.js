@@ -1,17 +1,25 @@
 import React, { Component } from 'react'
 
-export class TodoList extends Component {
+export default class TodoList extends Component {
+  renderTodoList() {
+    const { todoList } = this.props
+
+    return todoList.map( todo => (
+      <li key={todo.get('id')} >
+        {todo.get('text')}
+      </li>
+    ))
+  }
+
   render() {
-    const { todos, onTodoClick } = this.props
+    const { todoList, activeFilter, dispatch } = this.props
 
     return (
-      todos.map((todo) => {
-        return (
-          <li key={todo.id} onClick={ () => onTodoClick(todo.id) }>
-            {todo.text}
-          </li>
-        )
-      })
-    );
+      <div>
+        {
+          !!todoList.size && (<ul>{this.renderTodoList()}</ul>)
+        }
+      </div>
+    )
   }
 }
